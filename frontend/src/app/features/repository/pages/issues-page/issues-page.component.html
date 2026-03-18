@@ -1,0 +1,68 @@
+<section class="issues-page">
+
+  <!-- Breadcrumb / header -->
+  <div class="issues-page__header">
+    <nav class="issues-page__breadcrumb" aria-label="Breadcrumb">
+      <a routerLink="/" class="issues-page__breadcrumb-link">Repositories</a>
+      <span class="issues-page__breadcrumb-sep" aria-hidden="true">/</span>
+      <a
+        [href]="'https://github.com/' + fullName"
+        target="_blank"
+        rel="noreferrer"
+        class="issues-page__breadcrumb-link issues-page__breadcrumb-repo"
+      >{{ fullName }}</a>
+      <span class="issues-page__breadcrumb-sep" aria-hidden="true">/</span>
+      <span class="issues-page__breadcrumb-current">Issues</span>
+    </nav>
+  </div>
+
+  @if (isLoading$ | async) {
+    <div class="issues-loading" role="status" aria-label="Loading issues">
+      <span class="issues-loading__spinner" aria-hidden="true"></span>
+    </div>
+  } @else {
+    @if (vm$ | async; as vm) {
+
+      <!-- Issues box -->
+      <div class="issues-box">
+        <div class="issues-box__header">
+          <div class="issues-box__toggle issues-box__toggle-active">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+              <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"/>
+              <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"/>
+            </svg>
+            {{ vm.totalCount }} Open
+          </div>
+        </div>
+
+        @if (vm.issues.length > 0) {
+          <div class="issues-box__list">
+            @for (issue of vm.issues; track issue.id) {
+              <app-issue-card [issue]="issue" />
+            }
+          </div>
+        } @else {
+          <div class="issues-box__empty">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="24" height="24" fill="currentColor">
+              <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"/>
+              <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"/>
+            </svg>
+            <p>No issues found for this repository.</p>
+          </div>
+        }
+      </div>
+
+      @if (vm.totalCount > 10) {
+        <mat-paginator
+          [length]="vm.totalCount"
+          [pageSize]="10"
+          [hidePageSize]="true"
+          (page)="pageChange($event)"
+          aria-label="Issues pagination"
+        />
+      }
+
+    }
+  }
+
+</section>

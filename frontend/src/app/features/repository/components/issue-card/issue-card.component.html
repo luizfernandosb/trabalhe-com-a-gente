@@ -1,0 +1,67 @@
+<article class="issue-row">
+  <!-- State icon -->
+  <div class="issue-row__icon">
+    @if (issue.state === 'open') {
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#3fb950" role="img" aria-label="Open issue">
+        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"/>
+        <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"/>
+      </svg>
+    } @else {
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#8957e5" role="img" aria-label="Closed issue">
+        <path d="M11.28 6.78a.75.75 0 0 0-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l3.5-3.5Z"/>
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z"/>
+      </svg>
+    }
+  </div>
+
+  <!-- Body -->
+  <div class="issue-row__body">
+    <div class="issue-row__title-line">
+      <a
+        [href]="issue.html_url"
+        target="_blank"
+        rel="noreferrer"
+        class="issue-row__title"
+      >{{ issue.title }}</a>
+
+      @for (label of issue.labels; track label.id) {
+        <span
+          class="issue-row__label"
+          [style.background-color]="'#' + label.color"
+          [style.color]="getLabelTextColor(label.color)"
+        >{{ label.name }}</span>
+      }
+    </div>
+
+    <div class="issue-row__meta">
+      #{{ issue.number }}
+      &nbsp;&middot;&nbsp;
+      Opened {{ issue.created_at | date: 'MMM d, y' }} by
+      <a
+        [href]="'https://github.com/' + issue.user.login"
+        target="_blank"
+        rel="noreferrer"
+        class="issue-row__author"
+      >{{ issue.user.login }}</a>
+
+      @if (issue.closed_at) {
+        &nbsp;&middot;&nbsp; Closed {{ issue.closed_at | date: 'MMM d, y' }}
+      }
+    </div>
+  </div>
+
+  <!-- Comments -->
+  @if (issue.comments > 0) {
+    <a
+      [href]="issue.html_url"
+      target="_blank"
+      rel="noreferrer"
+      class="issue-row__comments"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+        <path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0 1 13.25 12H9.06l-2.573 2.573A1.458 1.458 0 0 1 4 13.543V12H2.75A1.75 1.75 0 0 1 1 10.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h4.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/>
+      </svg>
+      {{ issue.comments }}
+    </a>
+  }
+</article>

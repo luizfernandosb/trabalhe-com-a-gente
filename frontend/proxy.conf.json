@@ -1,0 +1,12 @@
+{
+  "/graphql": {
+    "target": "https://trabalhe-com-a-gente.onrender.com",
+    "secure": true,
+    "changeOrigin": true
+  },
+  "/api": {
+    "target": "https://trabalhe-com-a-gente.onrender.com",
+    "secure": true,
+    "changeOrigin": true
+  }
+}

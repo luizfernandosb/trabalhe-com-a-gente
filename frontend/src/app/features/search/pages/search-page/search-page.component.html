@@ -1,0 +1,68 @@
+<section class="search-page">
+
+  <!-- Recent searches -->
+  @if (state.history.length) {
+    <div class="gh-history">
+      <span class="gh-history__label">Recent searches</span>
+      <div class="gh-history__chips">
+        @for (item of state.history; track item) {
+          <button class="gh-history__chip" type="button" (click)="state.useHistory(item)">{{ item }}</button>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Results count -->
+  @if ((state.vm$ | async)?.totalCount) {
+    <div class="gh-results-header">
+      <strong class="gh-results-header__count">{{ (state.vm$ | async)?.totalCount | number }}</strong>
+      <span class="gh-results-header__label"> repository results</span>
+    </div>
+  }
+
+  <!-- Empty state -->
+  @if (!(state.hasSearched$ | async)) {
+    <div class="gh-empty-state">
+      <svg class="gh-empty-state__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <h2 class="gh-empty-state__title">Search for repositories</h2>
+      <p class="gh-empty-state__desc">Type a repository name in the search bar above and press <kbd>Enter</kbd> or click <strong>Search</strong>.</p>
+    </div>
+  }
+
+  <!-- Results -->
+  @if (state.isLoading$ | async) {
+    <div class="gh-skeleton-list" role="status" aria-label="Loading repositories">
+      @for (n of [1, 2, 3, 4, 5]; track n) {
+        <div class="gh-skeleton-card" aria-hidden="true">
+          <div class="gh-skeleton gh-skeleton-avatar"></div>
+          <div class="gh-skeleton-card__body">
+            <div class="gh-skeleton gh-skeleton-title"></div>
+            <div class="gh-skeleton gh-skeleton-text"></div>
+            <div class="gh-skeleton gh-skeleton-text gh-skeleton-short"></div>
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <ul class="gh-results" role="list" aria-label="Repository results" aria-live="polite">
+      @for (repository of state.repositories$ | async; track repository.id) {
+        <li>
+          <app-repository-card [repository]="repository" />
+        </li>
+      }
+    </ul>
+  }
+
+  <!-- Pagination -->
+  <mat-paginator
+    [length]="(state.vm$ | async)?.totalCount ?? 0"
+    [pageSize]="10"
+    [hidePageSize]="true"
+    (page)="state.pageChange($event)"
+    aria-label="Repository search pagination"
+  />
+
+</section>
