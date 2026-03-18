@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
-import { BehaviorSubject, combineLatest, finalize, map, Observable, of, startWith, switchMap } from 'rxjs';
+import { BehaviorSubject, combineLatest, finalize, map, merge, Observable, of, shareReplay, startWith, switchMap } from 'rxjs';
 
 import { Repository, SearchRepositoriesResponse } from '../../../core/models/repository.model';
 import { GithubSearchApiService } from '../../../core/services/github-search-api.service';
@@ -12,6 +12,11 @@ import { SearchHistoryService } from './search-history.service';
 export class SearchStateService {
   private readonly api = inject(GithubSearchApiService);
   private readonly historyService = inject(SearchHistoryService);
+
+  constructor() {
+    merge(this.sortControl.valueChanges, this.orderControl.valueChanges)
+      .subscribe(() => this.page$.next(1));
+  }
 
   readonly queryControl = new FormControl('', { nonNullable: true });
   readonly sortControl = new FormControl<SortBy>('stars', { nonNullable: true });
@@ -57,6 +62,7 @@ export class SearchStateService {
         order,
       }).pipe(finalize(() => this._loading$.next(false)));
     }),
+    shareReplay(1),
   );
 
   readonly repositories$: Observable<Repository[]> = this.vm$.pipe(
