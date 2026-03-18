@@ -1,0 +1,26 @@
+{
+  "data": {
+    "searchRepositories": {
+      "totalCount": 55,
+      "currentPage": 2,
+      "totalPages": 6,
+      "repositories": [
+        {
+          "id": "10",
+          "full_name": "svelte/svelte",
+          "description": "Cybernetically enhanced web apps.",
+          "html_url": "https://github.com/svelte/svelte",
+          "language": "Svelte",
+          "stargazers_count": 78000,
+          "watchers_count": 78000,
+          "topics": ["svelte", "frontend"],
+          "updated_at": "2024-06-10T00:00:00Z",
+          "owner": {
+            "login": "svelte",
+            "avatar_url": "https://avatars.githubusercontent.com/u/23617963?v=4"
+          }
+        }
+      ]
+    }
+  }
+}

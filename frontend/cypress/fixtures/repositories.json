@@ -1,0 +1,56 @@
+{
+  "data": {
+    "searchRepositories": {
+      "totalCount": 125,
+      "currentPage": 1,
+      "totalPages": 13,
+      "repositories": [
+        {
+          "id": "1",
+          "full_name": "facebook/react",
+          "description": "The library for web and native user interfaces.",
+          "html_url": "https://github.com/facebook/react",
+          "language": "JavaScript",
+          "stargazers_count": 230000,
+          "watchers_count": 230000,
+          "topics": ["declarative", "frontend", "javascript", "library", "ui"],
+          "updated_at": "2024-06-01T00:00:00Z",
+          "owner": {
+            "login": "facebook",
+            "avatar_url": "https://avatars.githubusercontent.com/u/69631?v=4"
+          }
+        },
+        {
+          "id": "2",
+          "full_name": "angular/angular",
+          "description": "Deliver web apps with confidence.",
+          "html_url": "https://github.com/angular/angular",
+          "language": "TypeScript",
+          "stargazers_count": 96000,
+          "watchers_count": 96000,
+          "topics": ["angular", "frontend", "typescript"],
+          "updated_at": "2024-05-20T00:00:00Z",
+          "owner": {
+            "login": "angular",
+            "avatar_url": "https://avatars.githubusercontent.com/u/139426?v=4"
+          }
+        },
+        {
+          "id": "3",
+          "full_name": "vuejs/vue",
+          "description": "Vue 3 is live.",
+          "html_url": "https://github.com/vuejs/vue",
+          "language": "TypeScript",
+          "stargazers_count": 207000,
+          "watchers_count": 207000,
+          "topics": ["frontend", "javascript", "vue"],
+          "updated_at": "2024-04-15T00:00:00Z",
+          "owner": {
+            "login": "vuejs",
+            "avatar_url": "https://avatars.githubusercontent.com/u/6128107?v=4"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,67 @@
+<article
+  class="repo-item"
+  (click)="openIssues()"
+  role="button"
+  tabindex="0"
+  (keydown.enter)="openIssues()"
+>
+  <div class="repo-item__header">
+    <div class="repo-item__identity">
+      <img
+        [src]="repository.owner.avatar_url"
+        [alt]="repository.owner.login"
+        class="repo-item__avatar"
+      />
+      <span class="repo-item__name">{{ repository.full_name }}</span>
+      <span class="repo-item__badge">Public</span>
+    </div>
+
+    <a
+      [href]="repository.html_url"
+      target="_blank"
+      rel="noreferrer"
+      class="repo-item__gh-link"
+      (click)="$event.stopPropagation()"
+      title="Open on GitHub"
+      aria-label="Open on GitHub"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+        <path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"/>
+      </svg>
+    </a>
+  </div>
+
+  @if (repository.description) {
+    <p class="repo-item__description">{{ repository.description }}</p>
+  }
+
+  @if (repository.topics.length) {
+    <div class="repo-item__topics">
+      @for (topic of repository.topics.slice(0, 5); track topic) {
+        <span class="repo-item__topic">{{ topic }}</span>
+      }
+    </div>
+  }
+
+  <div class="repo-item__meta">
+    @if (repository.language) {
+      <span class="repo-item__lang">
+        <span
+          class="repo-item__lang-dot"
+          [style.background-color]="getLanguageColor(repository.language)"
+        ></span>
+        {{ repository.language }}
+      </span>
+    }
+
+    <span class="repo-item__stars">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+        <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/>
+      </svg>
+      {{ formatCount(repository.stargazers_count) }}
+    </span>
+
+    <span class="repo-item__date">Updated {{ repository.updated_at | date: 'MMM d' }}</span>
+  </div>
+</article>
+

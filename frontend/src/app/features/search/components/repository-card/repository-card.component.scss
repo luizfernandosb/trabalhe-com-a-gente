@@ -1,0 +1,141 @@
+.repo-item {
+  border-bottom: 1px solid #21262d;
+  cursor: pointer;
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  transition: background-color 0.1s;
+}
+
+.repo-item:hover {
+  background-color: rgba(177, 186, 196, 0.04);
+}
+
+.repo-item:last-child {
+  border-bottom: none;
+}
+
+.repo-item:focus {
+  outline: 2px solid #1f6feb;
+  outline-offset: -2px;
+}
+
+.repo-item__header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.repo-item__identity {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.repo-item__avatar {
+  border-radius: 50%;
+  flex-shrink: 0;
+  height: 20px;
+  width: 20px;
+}
+
+.repo-item__name {
+  color: #2f81f7;
+  font-size: 14px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.repo-item__badge {
+  border: 1px solid #30363d;
+  border-radius: 2em;
+  color: #848d97;
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 1px 7px;
+}
+
+.repo-item__gh-link {
+  align-items: center;
+  border-radius: 6px;
+  color: #848d97;
+  display: flex;
+  flex-shrink: 0;
+  margin-left: 8px;
+  padding: 4px 6px;
+  text-decoration: none;
+  transition: color 0.15s, background-color 0.15s;
+}
+
+.repo-item__gh-link:hover {
+  background: rgba(177, 186, 196, 0.12);
+  color: #e6edf3;
+  text-decoration: none;
+}
+
+.repo-item__description {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  color: #848d97;
+  display: -webkit-box;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+  overflow: hidden;
+}
+
+.repo-item__topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.repo-item__topic {
+  background: rgba(56, 139, 253, 0.1);
+  border-radius: 2em;
+  color: #58a6ff;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 2px 10px;
+  transition: background-color 0.15s;
+}
+
+.repo-item__topic:hover {
+  background: #1f6feb;
+  color: #ffffff;
+}
+
+.repo-item__meta {
+  align-items: center;
+  color: #848d97;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 12px;
+  gap: 14px;
+}
+
+.repo-item__lang {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+}
+
+.repo-item__lang-dot {
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  height: 12px;
+  width: 12px;
+}
+
+.repo-item__stars {
+  align-items: center;
+  display: flex;
+  gap: 4px;
+}
