@@ -5,9 +5,6 @@
 .env.local
 .env.*.local
 
-# Generated environment file (built from .env by scripts/set-env.js)
-src/environments/environment.ts
-
 # Compiled output
 /dist
 /tmp
