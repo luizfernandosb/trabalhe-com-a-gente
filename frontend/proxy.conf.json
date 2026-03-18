@@ -1,12 +1,12 @@
 {
   "/graphql": {
-    "target": "http://localhost:3000",
-    "secure": false,
+    "target": "https://trabalhe-com-a-gente.onrender.com",
+    "secure": true,
     "changeOrigin": true
   },
   "/api": {
-    "target": "http://localhost:3000",
-    "secure": false,
+    "target": "https://trabalhe-com-a-gente.onrender.com",
+    "secure": true,
     "changeOrigin": true
   }
 }
