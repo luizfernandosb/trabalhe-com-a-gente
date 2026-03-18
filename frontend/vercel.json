@@ -1,3 +1,13 @@
 {
-  "outputDirectory": "dist/github-repo-search/browser"
+  "outputDirectory": "dist/github-repo-search/browser",
+  "rewrites": [
+    {
+      "source": "/graphql",
+      "destination": "https://trabalhe-com-a-gente.onrender.com/graphql"
+    },
+    {
+      "source": "/api/:path*",
+      "destination": "https://trabalhe-com-a-gente.onrender.com/api/:path*"
+    }
+  ]
 }
