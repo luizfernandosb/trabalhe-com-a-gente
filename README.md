@@ -252,10 +252,42 @@ Você deve enviar a resolução do desafio via pull request nesse mesmo reposit�
 Gostariamos de entender como você pensa e as decisões que você tomou durante o desenvolvimento. Então, quando for enviar seu pull request, por favor responda:
 
 - Qual ferramentas e bibliotecas (libraries, framework, tools etc) você usou
+
+**Frontend:** Angular 21, Angular Material, Angular CDK, RxJS, TypeScript, Cypress, Vitest, dotenv e Prettier
+**Backend:** Node.js, Express 5, graphql-http, graphql, node-cache, helmet, express-rate-limit, cors, dotenv, Vitest e Supertest
+**Infraestrutura:** Vercel, Render e GitHub
+
 - Porque você optou pela tecnologia X e não a Y
+
+Optei por **GraphQL** no lugar do REST por nunca ter sido a minha stack principal — apesar de ter um conhecimento razoável, foi desafiador e satisfatório.
+
+Optei também por **não usar autenticação JWT** por ser um projeto demonstrativo, mas seria interessante implementar uma autenticação JWT "real" em um cenário de produção.
+
 - Quais princípios da engenharia de software que você usou?
+
+| Princípio | Aplicação |
+|-----------|-----------|
+| **SOLID** | Cada serviço tem uma única responsabilidade; resolvers são extensíveis sem modificar os existentes |
+| **DRY** | Lógica de paginação centralizada no backend; componentes Angular reutilizáveis |
+| **Separation of Concerns** | Frontend desacoplado do backend via GraphQL; `set-env.js` separa geração de configuração do build |
+| **Defense in Depth** | Helmet + Rate Limiting + CORS + Bearer Token + Validação de inputs |
+| **Cache-Aside Pattern** | `node-cache` armazena respostas da API do GitHub para reduzir latência e evitar rate limiting |
+
 - Desafios e problemas que você enfrentou e como você resolveu
+
+**Angular e GraphQL** nunca foram minha stack principal — foi bem desafiador e agregou muito para mim.
+
+
 - O que você entende que pode ser melhorado e como fazer isso
+**🗄️ Banco de dados persistente**
+Atualmente o histórico de buscas é armazenado apenas no `localStorage` do browser. Poderia ser persistido em um banco de dados (ex: PostgreSQL ou MongoDB) associado ao usuário, permitindo sincronização entre dispositivos.
+
+**🔐 Autenticação de usuário**
+Não há login de usuário. Implementar OAuth com GitHub permitiria aumentar o rate limit por usuário autenticado, além de possibilitar funcionalidades como favoritos e histórico na nuvem.
+
+**🐳 Docker**
+Adicionar um `docker-compose.yml` simplificaria muito o setup do ambiente de desenvolvimento, eliminando a necessidade de configurar Node.js e variáveis de ambiente manualmente.
+
 # 🔍 GitHub Repository Search
 
 Aplicação full-stack para pesquisar repositórios e issues no GitHub, com paginação, filtros, ordenação e histórico de buscas.
